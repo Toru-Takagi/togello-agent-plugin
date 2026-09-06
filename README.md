@@ -1,5 +1,7 @@
 # Togello Agent Plugin
 
+![Togello logo](assets/togello-icon-512.png)
+
 Togelloの公開MCPへ接続し、個人のTODO・予定参照・日別メモ・活動記録をAIから扱うためのPluginである。
 
 [Agent Plugins 1.0.0](https://agent-plugins.org/)の共通形式を使用する。独自のSkillや実行スクリプトは含まない。
@@ -67,4 +69,4 @@ Pluginは既存のリモートMCPに接続する設定を配布する。実際�
 - [MCPサーバーのソース](https://github.com/Toru-Takagi/togello-mcp-server)
 - サポート: support@togello.com
 
-このリポジトリのライセンスは未選定である。Marketplace申請前に確定する。
+このPluginの設定と文書は[ISC License](LICENSE)で提供する。`assets/togello-icon-512.png`はISC Licenseの対象外である。Togelloサービス本体のコードやTogelloの名称・ロゴの権利を許諾するものではない。
