@@ -2,13 +2,13 @@
 
 ![Togello logo](assets/togello-icon-512.png)
 
-Togelloの公開MCPへ接続し、個人のTODO・予定参照・日別メモ・活動記録をAIから扱うためのPluginである。
+Togelloの公開MCPへ接続し、個人のTODO・予定参照・日別メモ・活動記録をCursorやClaude Codeから扱うためのPluginである。
 
-[Agent Plugins 1.0.0](https://agent-plugins.org/)の共通形式を使用する。独自のSkillや実行スクリプトは含まない。
+[Agent Plugins 1.0.0](https://agent-plugins.org/)のCursor向け形式と、Claude Code向けのPlugin形式を同じリポジトリで提供する。Cursor向けの`plugin.json`と`mcp.json`は直下に、Claude Code向けの`.claude-plugin/plugin.json`と`.mcp.json`はClaude CodeのPluginルートに配置する。独自のSkillや実行スクリプトは含まない。
 
 ## 現在の状態
 
-Marketplaceには未申請である。2026-09-07にmacOSのCursorで、ローカルPluginの認識、OAuth認可の完了、Streamable HTTP接続、12ツールの認識、日本の現在日時の取得を確認した。
+Cursor MarketplaceとAnthropic Community Marketplaceには未申請である。2026-09-07にmacOSのCursorで、ローカルPluginの認識、OAuth認可の完了、Streamable HTTP接続、12ツールの認識、日本の現在日時の取得を確認した。
 
 この検証はローカル配置での確認であり、Marketplace経由のインストール、全ツールの操作、トークン期限切れ後の自動更新、他クライアントでの互換性までを保証するものではない。申請用の説明文と検証範囲は[Marketplace申請資料](MARKETPLACE_SUBMISSION.md)を参照する。
 
@@ -40,6 +40,18 @@ Marketplaceには未申請である。2026-09-07にmacOSのCursorで、ローカ
 ログイン後に`localhost:8787/callback`へ接続できない場合は、Cursor側の認証待受が終了している可能性がある。Cursorの状態を確認し、未接続ならAuthenticateから新しい認証を開始する。古い認可ページやcallback URLを再利用せず、新しく開いたページで続ける。URLのクエリに含まれる認証コードなどをサポートへ送らない。
 
 組織設定でローカルPluginの読み込みが禁止されている場合は、その設定に従う。他のクライアントでは、Agent Plugins、Streamable HTTP、OAuthへの対応と導入手順を個別に確認する。
+
+## Claude Codeでのローカル検証手順
+
+1. このリポジトリの親ディレクトリをカレントディレクトリにする。
+2. `claude plugin validate ./togello-agent-plugin`を実行し、Pluginの構成を検証する。
+3. `claude --plugin-dir ./togello-agent-plugin`でClaude Codeを起動する。
+4. `/mcp`でPlugin由来のスコープ名`plugin:togello:togello`が表示されることを確認する。
+5. 必要に応じてOAuth認証を完了し、Togelloのツールが認識されることを確認する。
+
+Pluginリポジトリのルートをカレントディレクトリにして起動すると、ルートの`.mcp.json`がプロジェクトMCPとしても読み込まれる可能性がある。Plugin由来の接続を確認する際は、必ず親ディレクトリから起動する。
+
+Claude Code向けの申請資料とCommunity Marketplaceへの導入確認は[Anthropic Marketplace申請資料](ANTHROPIC_MARKETPLACE_SUBMISSION.md)を参照する。Cursor向けの申請資料は[Cursor Marketplace申請資料](MARKETPLACE_SUBMISSION.md)に分けて管理する。
 
 ## できること
 
