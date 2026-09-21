@@ -1,0 +1,11 @@
+{
+  "name": "togello",
+  "version": "0.1.0",
+  "description": "Manage personal tasks, calendar memos, and activity logs with Togello.",
+  "author": {
+    "name": "Toru-Takagi"
+  },
+  "homepage": "https://togello.com",
+  "repository": "https://github.com/Toru-Takagi/togello-agent-plugin",
+  "license": "ISC"
+}
